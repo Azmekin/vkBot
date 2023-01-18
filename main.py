@@ -19,8 +19,8 @@ def  askServer():
     obj = json.loads(r.text)
     print(obj)
     for i in obj["updates"]:
-        MessageSender.test_send_mess(Dispatcher.getMessage(i))
-        #MessageSender.send_message(Dispatcher.getMessage(i))
+        #MessageSender.test_send_mess(Dispatcher.getMessage(i))
+        MessageSender.send_message(Dispatcher.getMessage(i))
 
 
 

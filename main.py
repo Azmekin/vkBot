@@ -1,5 +1,6 @@
 # This is a sample Python script.
 import json
+from time import sleep
 
 import requests
 from utils.Dispatcher import Dispatcher
@@ -11,17 +12,16 @@ import asyncio
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 def  askServer():
-
-    r = requests.get(f"{hiden_params.server}"
-                     f"?act=a_check&key={hiden_params.key_getter()}"
-                     f"&ts={hiden_params.ts}&wait=1")
+    params=hiden_params.key_getter()
+    r = requests.get(f"{params['server']}"
+                     f"?act=a_check&key={params['key']}"
+                     f"&ts={params['ts']}&wait=1")
     obj = json.loads(r.text)
     print(obj)
+    for i in obj["updates"]:
+        MessageSender.test_send_mess(Dispatcher.getMessage(i))
+        #MessageSender.send_message(Dispatcher.getMessage(i))
 
-    """   if r1!=r:
-            for i in obj["updates"]:
-            MessageSender.test_send_mess(Dispatcher.getMessage(i))
-"""
 
 
 
@@ -30,6 +30,7 @@ if __name__ == '__main__':
     r1={}
     while True:
         askServer()
+  #      sleep(1)
 
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

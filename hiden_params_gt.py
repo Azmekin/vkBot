@@ -3,7 +3,7 @@ import json
 import requests
 
 token=""
-group_id=207820607
+group_id=0
 def key_getter():
     r=requests.post("https://api.vk.com/method/groups.getLongPollServer",{"group_id":group_id,"access_token":token,"v":"5.131"})
     print(r.text)
